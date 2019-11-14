@@ -28,17 +28,19 @@ const UserSchema = new Schema({
 		required: true,
 	},
 	phone: {
-		type: Number,
+		type: String,
 		unique: true,
-		required: 'Phone is required.',
-		validate: [validator.isMobilePhone, 'Please fill a valid phone.']
+		required: true,
 	},
 	address: {
 		type: String,
 		minLength: 10,
 		required: true,
 	},
-	createdAt: new Date(),
+	createdAt: {
+		type: Date,
+		default: Date.now()
+	},
 	updatedAt: {type: Date}
 });
 module.exports = mongoose.model('user', UserSchema);
