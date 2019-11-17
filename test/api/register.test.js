@@ -12,7 +12,7 @@ describe('/POST Register', () => {
 		const movie = {
 			email: `${randomString}@gmail.com`,
 			password: '10203040Aa',
-			name: 'Test Name',
+			name: randomString,
 			surname: 'Test Surname',
 			phone: Math.random().toString().slice(2,11),
 			address: 'My Address',
