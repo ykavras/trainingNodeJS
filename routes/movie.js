@@ -14,4 +14,16 @@ router.post('/', (req, res, next) => {
 	})
 });
 
+router.get('/', (req, res, next) => {
+	const promise = Movie.aggregate([
+			{$lookup: {from: 'directors',localField: 'directorID',foreignField: '_id',as: 'director'}},{$unwind: '$director'},
+			{$lookup: {from: 'categories',localField: 'categoryID',foreignField: '_id',as: 'category'}},{$unwind: '$category'},
+	]);
+	promise.then((data) => {
+		res.json(data);
+	}).catch((err) => {
+		res.json(err);
+	})
+});
+
 module.exports = router;
