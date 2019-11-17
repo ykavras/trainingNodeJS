@@ -5,14 +5,16 @@ const server = require('../../app');
 
 chai.use(chaiHttp);
 
+const randomString = Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15);
+
 describe('/POST Register', () => {
 	it('it should POST a register', (done) => {
 		const movie = {
-			email: 'test2@gmail.com',
+			email: `${randomString}@gmail.com`,
 			password: '10203040Aa',
 			name: 'Test Name',
 			surname: 'Test Surname',
-			phone: '+905467671870',
+			phone: Math.random().toString().slice(2,11),
 			address: 'My Address',
 		};
 
