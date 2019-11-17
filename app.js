@@ -7,7 +7,6 @@ const sassMiddleware = require('node-sass-middleware');
 const mongoose = require('mongoose');
 
 const indexRouter = require('./routes/index');
-const userRouter = require('./routes/user');
 const categoryRouter = require('./routes/category');
 const movieRouter = require('./routes/movie');
 const directorRouter = require('./routes/director');
@@ -24,6 +23,13 @@ mongoose.connection.on('error', (err) => {
 	console.log('MongoDb: Error', err);
 });
 // -- Mongoose Connect
+
+// Config
+const config = require('./config');
+app.set('api_secret_key', config.api_secret_key);
+
+// Middleware
+const verifyToken = require('./middleware/verify-token');
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -42,10 +48,10 @@ app.use(sassMiddleware({
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
-app.use('/user', userRouter);
-app.use('/category', categoryRouter);
-app.use('/movie', movieRouter);
-app.use('/director', directorRouter);
+app.use('/api', verifyToken);
+app.use('/api/category', categoryRouter);
+app.use('/api/movie', movieRouter);
+app.use('/api/director', directorRouter);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {

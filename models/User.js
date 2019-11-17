@@ -2,13 +2,17 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 const validator = require('validator');
 
-const UserSchema = new Schema({
+const RegisterSchema = new Schema({
 	email: {
 		type: String,
 		lowercase: true,
 		unique: true,
 		required: 'Email address is required.',
 		validate: [validator.isEmail, 'Please fill a valid email address.']
+	},
+	password: {
+		type: String,
+		minlength: 5,
 	},
 	name: {
 		type: String,
@@ -37,4 +41,5 @@ const UserSchema = new Schema({
 		default: Date.now()
 	},
 });
-module.exports = mongoose.model('user', UserSchema);
+
+module.exports = mongoose.model('register', RegisterSchema);
