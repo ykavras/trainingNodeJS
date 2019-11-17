@@ -7,8 +7,8 @@ chai.use(chaiHttp);
 
 let token;
 
-describe('Category Tests', () => {
-	before('Get Token', (done) => {
+describe('CATEGORY TEST', () => {
+	before('GET TOKEN', (done) => {
 		chai.request(server)
 			.post('/authenticate')
 			.send({email: 'ykavras@gmail.com', password: '10203040Aa'})
@@ -20,7 +20,7 @@ describe('Category Tests', () => {
 				done();
 			});
 	});
-	describe('/GET Categories', () => {
+	describe('/GET CATEGORIES', () => {
 		it('Get all categories records', (done) => {
 			chai.request(server)
 				.get('/api/category')

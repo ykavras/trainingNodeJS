@@ -7,8 +7,8 @@ chai.use(chaiHttp);
 
 let token;
 
-describe('Movies Tests', () => {
-	before('Get Token', (done) => {
+describe('MOVIES TEST', () => {
+	before('GET TOKEN', (done) => {
 		chai.request(server)
 			.post('/authenticate')
 			.send({email: 'ykavras@gmail.com', password: '10203040Aa'})
@@ -20,7 +20,7 @@ describe('Movies Tests', () => {
 				done();
 			});
 	});
-	describe('/GET Movies', () => {
+	describe('/GET MOVIES', () => {
 		it('Get all movies records', (done) => {
 			chai.request(server)
 				.get('/api/movie')

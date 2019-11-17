@@ -7,7 +7,7 @@ chai.use(chaiHttp);
 
 const randomString = Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15);
 
-describe('/POST Register', () => {
+describe('/POST REGISTER TEST', () => {
 	it('it should POST a register', (done) => {
 		const movie = {
 			email: `${randomString}@gmail.com`,

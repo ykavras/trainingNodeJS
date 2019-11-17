@@ -7,8 +7,8 @@ chai.use(chaiHttp);
 
 let token;
 
-describe('Directors Tests', () => {
-	before('Get Token', (done) => {
+describe('DIRECTORS TEST', () => {
+	before('GET TOKEN', (done) => {
 		chai.request(server)
 			.post('/authenticate')
 			.send({email: 'ykavras@gmail.com', password: '10203040Aa'})
@@ -20,7 +20,7 @@ describe('Directors Tests', () => {
 				done();
 			});
 	});
-	describe('/GET Directors', () => {
+	describe('/GET DIRECTORS', () => {
 		it('Get all director records', (done) => {
 			chai.request(server)
 				.get('/api/director')
