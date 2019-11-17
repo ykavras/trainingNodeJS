@@ -13,16 +13,8 @@ const directorRouter = require('./routes/director');
 
 const app = express();
 
-// -- Mongoose Connect
-mongoose.set('useCreateIndex', true);
-mongoose.connect('mongodb://localhost:27017/TRAINING-NODE-JS-DB', {useUnifiedTopology: true, useNewUrlParser: true});
-
-mongoose.connection.on('open', () => {
-	console.log('MongoDb: Connected');
-});
-mongoose.connection.on('error', (err) => {
-	console.log('MongoDb: Error', err);
-});
+// db connection
+const db = require('./helper/db.js')();
 
 // Config
 const config = require('./config');
