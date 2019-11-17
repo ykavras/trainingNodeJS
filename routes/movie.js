@@ -2,11 +2,11 @@ const express = require('express');
 const router = express.Router();
 
 // GET MODEL SCHEMA
-const User = require('../models/User');
+const Movie = require('../models/Movie');
 
-router.post('/register', function (req, res, next) {
-	const user = new User(req.body);
-	const promise = user.save();
+router.post('/', (req, res, next) => {
+	const movie = new Movie(req.body);
+	const promise = movie.save();
 	promise.then(data => {
 		res.json(data);
 	}).catch(err => {

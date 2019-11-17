@@ -3,13 +3,8 @@ const Schema = mongoose.Schema;
 const validator = require('validator');
 
 const UserSchema = new Schema({
-	userType: {
-		type: String,
-		required: true,
-	},
 	email: {
 		type: String,
-		trim: true,
 		lowercase: true,
 		unique: true,
 		required: 'Email address is required.',
@@ -41,6 +36,5 @@ const UserSchema = new Schema({
 		type: Date,
 		default: Date.now()
 	},
-	updatedAt: {type: Date}
 });
 module.exports = mongoose.model('user', UserSchema);
