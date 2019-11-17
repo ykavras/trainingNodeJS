@@ -7,7 +7,7 @@ chai.use(chaiHttp);
 
 let token;
 
-describe('Category Tests', () => {
+describe('Movies Tests', () => {
 	before('Get Token', (done) => {
 		chai.request(server)
 			.post('/authenticate')
@@ -20,10 +20,10 @@ describe('Category Tests', () => {
 				done();
 			});
 	});
-	describe('/GET Categories', () => {
-		it('Get all categories records', (done) => {
+	describe('/GET Movies', () => {
+		it('Get all movies records', (done) => {
 			chai.request(server)
-				.get('/api/category')
+				.get('/api/movie')
 				.set('x-access-token', token)
 				.end((err, res) => {
 					if (err)
