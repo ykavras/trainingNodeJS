@@ -2,8 +2,14 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const MovieSchema = new Schema({
-	directorID: Schema.Types.ObjectId,
-	categoryID: Schema.Types.ObjectId,
+	directorID: {
+		type: Schema.Types.ObjectId,
+		required: true,
+	},
+	categoryID: {
+		type: Schema.Types.ObjectId,
+		required: true,
+	},
 	coverURL: {
 		type: String,
 		required: true,
