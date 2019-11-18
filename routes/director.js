@@ -61,4 +61,17 @@ router.get('/', (req, res, next) => {
 	});
 });
 
+router.get('/:director_id', (req, res, next) => {
+	const promise = Director.findById(req.params.director_id);
+
+	promise.then((movie) => {
+		if (!movie)
+			next({message: 'The director was not found.', code: 99});
+
+		res.json(movie);
+	}).catch((err) => {
+		res.json(err);
+	});
+});
+
 module.exports = router;
