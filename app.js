@@ -4,7 +4,6 @@ const path = require('path');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 const sassMiddleware = require('node-sass-middleware');
-const mongoose = require('mongoose');
 
 const indexRouter = require('./routes/index');
 const categoryRouter = require('./routes/category');
