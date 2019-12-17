@@ -42,16 +42,20 @@ router.post('/authenticate', (req, res) => {
 			throw err;
 
 		if (!user) {
-			res.json({
+			res.status(401).json({
 				status: false,
-				message: 'Authentication failed, user not found.'
+				message: {
+					email: 'Email not found.'
+				}
 			});
 		} else {
 			bcrypt.compare(password, user.password).then((result) => {
 				if (!result) {
-					res.json({
+					res.status(401).json({
 						status: false,
-						message: 'Authentication failed, wrong password.'
+						message: {
+							password: 'Wrong password.'
+						}
 					});
 				} else {
 					const payload = {
@@ -61,10 +65,7 @@ router.post('/authenticate', (req, res) => {
 						expiresIn: 720 // 12 hour
 					});
 
-					res.json({
-						status: true,
-						token
-					})
+					res.status(200).json({token})
 				}
 			});
 		}
