@@ -2,10 +2,10 @@ const express = require('express');
 const router = express.Router();
 
 // GET MODEL SCHEMA
-const Category = require('../models/Category');
+const CategoryRouter = require('../models/Category');
 
 router.post('/', (req, res, next) => {
-	const category = new Category(req.body);
+	const category = new CategoryRouter(req.body);
 	const promise = category.save();
 	promise.then(data => {
 		res.json(data);
@@ -15,7 +15,7 @@ router.post('/', (req, res, next) => {
 });
 
 router.get('/', (req, res, next) => {
-	const promise = Category.find({});
+	const promise = CategoryRouter.find({});
 	promise.then(data => {
 		res.json(data);
 	}).catch((err) => {

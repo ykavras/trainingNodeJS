@@ -2,20 +2,10 @@ const express = require('express');
 const router = express.Router();
 
 // GET MODEL SCHEMA
-const Movie = require('../models/Movie');
-
-router.post('/', (req, res, next) => {
-	const movie = new Movie(req.body);
-	const promise = movie.save();
-	promise.then(data => {
-		res.json(data);
-	}).catch(err => {
-		res.json(err)
-	})
-});
+const MovieRouter = require('../models/Movie');
 
 router.get('/', (req, res, next) => {
-	const promise = Movie.aggregate([
+	const promise = MovieRouter.aggregate([
 		{
 			$lookup: {
 				from: 'directors',
@@ -41,7 +31,7 @@ router.get('/', (req, res, next) => {
 });
 
 router.get('/:movie_id', (req, res, next) => {
-	const promise = Movie.findById(req.params.movie_id);
+	const promise = MovieRouter.findById(req.params.movie_id);
 
 	promise.then((movie) => {
 		if (!movie)

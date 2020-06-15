@@ -1,7 +1,6 @@
-const mongoose = require('mongoose');
-const Schema = mongoose.Schema;
+const {model, Schema} = require('mongoose');
 
-const MovieSchema = new Schema({
+const Movie = model('Movie', {
 	directorID: {
 		type: Schema.Types.ObjectId,
 		required: true,
@@ -40,4 +39,20 @@ const MovieSchema = new Schema({
 		default: Date.now()
 	},
 });
-module.exports = mongoose.model('movie', MovieSchema);
+
+const MovieAdminOptions = {
+	resource: Movie,
+	options: {
+		parent: {
+			name: 'İşlemler'
+		},
+		listProperties: ['name', 'rating', 'duration', 'createdAt'],
+		showProperties: ['coverURL', 'name', 'rating', 'duration', 'summary', 'createdAt'],
+		editProperties: ['coverURL', 'name', 'rating', 'duration', 'summary', 'createdAt'],
+	}
+};
+
+module.exports = {
+	Movie,
+	MovieAdminOptions
+};

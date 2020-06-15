@@ -9,12 +9,13 @@ router.get('/', function (req, res, next) {
 });
 
 // GET MODELS SCHEMA
-const User = require('../models/User');
+const {Register} = require('../models/Register');
+const {Movie} = require('../models/Movie');
 
 router.post('/register', (req, res, next) => {
 	const {email, password, name, surname, phone, address} = req.body;
 	bcrypt.hash(password, 10).then((hash) => {
-		const user = new User({
+		const user = new Register({
 			email,
 			password: hash,
 			name,
@@ -30,6 +31,16 @@ router.post('/register', (req, res, next) => {
 			res.json(err);
 		})
 	});
+});
+
+router.post('/movie', (req, res, next) => {
+	const movie = new Movie(req.body);
+	const promise = movie.save();
+	promise.then(data => {
+		res.json(data);
+	}).catch(err => {
+		res.json(err)
+	})
 });
 
 router.post('/authenticate', (req, res) => {
@@ -71,4 +82,5 @@ router.post('/authenticate', (req, res) => {
 		}
 	});
 });
+
 module.exports = router;

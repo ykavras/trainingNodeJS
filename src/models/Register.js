@@ -1,8 +1,7 @@
-const mongoose = require('mongoose');
-const Schema = mongoose.Schema;
+const {model} = require('mongoose');
 const validator = require('validator');
 
-const RegisterSchema = new Schema({
+const Register = model('Register', {
 	email: {
 		type: String,
 		lowercase: true,
@@ -42,4 +41,16 @@ const RegisterSchema = new Schema({
 	},
 });
 
-module.exports = mongoose.model('register', RegisterSchema);
+const RegisterAdminOptions = {
+	resource: Register, options: {
+		parent: {name: 'Kullanıcı Bilgileri'},
+		listProperties: ['email', 'name', 'surname', 'phone', 'createdAt'],
+		showProperties: ['email', 'name', 'surname', 'phone', 'address', 'createdAt'],
+		editProperties: ['email', 'name', 'surname', 'phone', 'address']
+	}
+};
+
+module.exports = {
+	Register,
+	RegisterAdminOptions
+};
